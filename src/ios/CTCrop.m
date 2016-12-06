@@ -14,7 +14,8 @@
     NSString *imagePath = [command.arguments objectAtIndex:0];
     NSDictionary *options = [command.arguments objectAtIndex:1];
     id quality = options[@"quality"] ?: @100;
-    
+    CGFloat ratio = options[@"ratio"] ?: 1.0f;
+        
     self.quality = [quality unsignedIntegerValue];
     NSString *filePrefix = @"file://";
     
