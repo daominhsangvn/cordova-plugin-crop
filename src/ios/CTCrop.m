@@ -36,6 +36,7 @@
     PECropViewController *cropController = [[PECropViewController alloc] init];
     cropController.delegate = self;
     cropController.image = image;
+    cropController.keepingCropAspectRatio = YES;
     // e.g.) Cropping center square
     CGFloat width = image.size.width;
     CGFloat height = image.size.height;
