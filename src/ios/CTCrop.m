@@ -14,7 +14,7 @@
     NSString *imagePath = [command.arguments objectAtIndex:0];
     NSDictionary *options = [command.arguments objectAtIndex:1];
     id quality = options[@"quality"] ?: @100;
-    CGFloat ratio = options[@"ratio"] ?: 1.0f;
+    id ratio = options[@"ratio"] ?: @1.0f;
         
     self.quality = [quality unsignedIntegerValue];
     NSString *filePrefix = @"file://";
@@ -38,8 +38,11 @@
     cropController.delegate = self;
     cropController.image = image;
     cropController.keepingCropAspectRatio = YES;
+    cropController.rotationEnabled = NO;
+    
     // e.g.) Cropping center square
     CGFloat width = image.size.width;
+    CGFloat _ratio = [ratio doubleValue];
     CGFloat height = image.size.height;
     CGFloat length = MIN(width, height);
     cropController.toolbarHidden = YES;
@@ -49,7 +52,7 @@
     cropController.imageCropRect = CGRectMake((width - length) / 2,
                                           (height - length) / 2,
                                           length,
-                                          length);
+                                          length/_ratio);
     
     self.callbackId = command.callbackId;
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:cropController];
