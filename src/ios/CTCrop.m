@@ -38,7 +38,6 @@
     cropController.delegate = self;
     cropController.image = image;
     cropController.keepingCropAspectRatio = YES;
-    cropController.rotationEnabled = NO;
     
     // e.g.) Cropping center square
     CGFloat width = image.size.width;
